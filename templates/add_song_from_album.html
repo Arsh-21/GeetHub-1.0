@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Song through Album</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<!-- Header -->
+<nav class="navbar navbar-dark bg-dark">
+    <span class="navbar-brand mb-0 h1">Creator Corner</span>
+    <div class="ml-auto">
+        <a href="/{{ username }}/creator_dashboard">Creator Dashboard</a> | <a href="/{{ username }}/create_album">Create Album</a> | <a href="/{{ username }}/add_song_from_album">Upload Song</a> | <a href="/{{ username }}/user_home_page">User Account</a> | <a href="/">Logout</a>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<div class="container py-5">
+    <div class="uploads-list">
+        <h3><b>All Albums</b></h3><br>
+        <div class="form-group text-center">
+            <input type="text" class="form-control w-50 mx-auto" id="trackSearch" placeholder="Search by name">
+        </div>
+        <br>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped text-center">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Genre</th>
+                        <th>Artist</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for album in album_info %}
+                    <tr>
+                        <td>{{album[1]}}</td>                        
+                        <td>{{ album[2] }}</td>
+                        <td>{{album[3]}}</td>
+                        <td><a href="/{{ username }}/album/{{ album[0] }}" class="btn btn-success">View Songs</a></td>
+                        <td><a href="/{{ username }}/upload_song/{{album[0]}}" class="btn btn-primary">Add Song</a></td>
+                        <td>
+                            <form method="post" action="/{{ username }}/delete_album/{{ album[0] }}" >
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

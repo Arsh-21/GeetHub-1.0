@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Tracks (User View)</title>
+
+    <!-- Include Bootstrap CSS (from a CDN) -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Include Font Awesome (from a CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+
+<!-- Header -->
+<nav class="navbar navbar-dark bg-dark">
+    <span class="navbar-brand mb-0 h1">Music Streaming Application</span>
+    <div class="ml-auto">
+        <a href="/{{ username }}/creator_home">Creator Account</a> | <a href="/{{ username }}/user_home_page">User Home Page</a> | <a href="/{{ username }}/user_profile">Profile</a> | <a href="/{{ username }}/user_albums">All Albums</a> | <a href="/">Logout</a>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<div class="container py-5">
+    <div class="uploads-list">
+        <h3><b>Tracks</b></h3><br>
+        <form action="{{ url_for('search',username = username, category='song') }}" method="POST">
+            <input type="text" name="searchstring" placeholder="Search">
+            <input type="hidden" name="username" value="{{ username }}">
+            <button type="submit">Search</button>
+        </form>
+        <br>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped text-center">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Duration</th>
+                        <th>Date Created</th>
+                        <th>Album</th>
+                        <th>Artist</th>
+                        <th></th>
+                        
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for track in track_info %}
+                    <tr>
+                        <td>{{ track[1] }}</td>
+                        <td>{{ track[2] }}</td>
+                        <td>{{ track[3] }}</td>
+                        <td>{{ track[4] }}</td>
+                        <td>{{ track[5] }}</td>
+                        <td><a href="/{{username}}/song/{{ track[0] }}" class="btn btn-success">View lyrics</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Include Bootstrap JS (from a CDN) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

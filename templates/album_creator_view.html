@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Album (Creator View)</title>
+
+    <!-- Include Bootstrap CSS (from a CDN) -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Include Font Awesome (from a CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+
+<!-- Header -->
+<nav class="navbar navbar-dark bg-dark">
+    <span class="navbar-brand mb-0 h1">Creator Corner   </span>
+    <div class="ml-auto">
+        <a href="/{{ username }}/creator_dashboard">Creator Dashboard</a> | <a href="/{{ username }}/create_album">Create Album</a> | <a href="/{{ username }}/upload_song">Upload Song</a> | <a href="/{{ username }}/user_home_page">User Account</a> | <a href="/">Logout</a>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<div class="container main-content mt-3 text-center">
+    <!-- Album Details Section -->
+    <div class="card text-center p-3" style="max-width: 800px; margin: 0 auto; background-color: #f0f0f0; color: #333;">
+        <h4 class="card-title font-weight-bold">Album 1</h4>
+        <div class="card-body">
+            <div class="song-details">
+                <p><b>Creator:</b> {{ album[5] }} <br>
+                    <b>Genre:</b> {{ album[1] }} <br>
+                    <b>Number of songs:</b> {{album[3]}}
+                </p>
+            </div>
+
+            <div class="row mt-3 justify-content-center">
+                {% for song_data in album[4] %}
+                <div class="col-md-4 mb-3">
+                    <div class="card text-center p-3" style="background-color: #ffffff;">
+                        <h5 class="card-title font-weight-bold">{{song_data[1]}}</h5>
+                        <a href="/{{username}}/song/{{song_data[0]}}"class="btn btn-warning">View Lyrics</a>
+                    </div>
+                </div>
+                {% endfor %}
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Include Bootstrap JS (from a CDN) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Creators (Admin View)</title>
+
+    <!-- Include Bootstrap CSS (from a CDN) -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Include Font Awesome (from a CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+
+<!-- Header -->
+<nav class="navbar navbar-dark bg-dark">
+    <span class="navbar-brand mb-0 h1">Administrator</span>
+    <div class="ml-auto">
+        <a href="/{{ username }}/admin_dashboard">Admin Dashboard</a> | <a href="/{{ username }}/admin_tracks">All Tracks</a> | <a href="/{{ username }}/admin_albums">All Albums</a> | <a href="/">Logout</a>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<div class="container py-5">
+    <div class="uploads-list">
+        <h3><b>All Creators</b></h3><br>
+        <div class="form-group text-center">
+            <input type="text" class="form-control w-50 mx-auto" id="trackSearch" placeholder="Search by name">
+        </div>
+        <br>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped text-center">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Number of Songs</th>
+                        <th>Number of Albums</th>
+                        <th>Average rating</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Artist 1</td>
+                        <td>10</td>
+                        <td>3</td>
+                        <td>4.5</td>
+                        <td><button class="btn btn-success">View Songs</button></td>
+                        <td><button class="btn btn-primary">Flag</button></td>
+                        <td><button class="btn btn-danger">Delete</button></td>
+                    </tr>
+                    <tr>
+                        <td>Artist 2</td>
+                        <td>16</td>
+                        <td>5</td>
+                        <td>4.2</td>
+                        <td><button class="btn btn-success">View Songs</button></td>
+                        <td><button class="btn btn-primary">Flag</button></td>
+                        <td><button class="btn btn-danger">Delete</button></td>
+                    </tr>
+                    <!-- Add more rows as needed -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Include Bootstrap JS (from a CDN) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

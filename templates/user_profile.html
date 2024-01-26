@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+
+<nav class="navbar navbar-dark bg-dark">
+        <span class="navbar-brand mb-0 h1">User Profile</span>
+        <div class="ml-auto">
+            <a href="/{{ username }}/creator_register">Creator Account</a> | <a href="/{{ username }}/user_home_page">User Home Page</a> | <a href="/{{ username }}/user_tracks">All Tracks</a> | <a href="/{{ username }}/user_albums">All Albums</a> | <a href="/">Logout</a>
+        </div>
+</nav>    
+
+<div class="container py-5">
+    <h2 class="mb-4">User Profile</h2>
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5>Username: {{username}}</h5>    
+            <!-- if user is already a creator, show a 'remove yourself as creator button', else show 'register as creator button' -->        
+        </div>
+    </div>
+    <!-- Playlist Section -->
+    <h3 class="mb-3">Playlists</h3>
+    <div class="row">
+        <!-- Dummy Playlist Tiles -->
+        {% for pl_data in pl_data1 %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{pl_data[1]}}</h5>
+                    <a href="/{{ username }}/playlist/{{ pl_data[0] }}" class="btn btn-primary">View Playlist</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

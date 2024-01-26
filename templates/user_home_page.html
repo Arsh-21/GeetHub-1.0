@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Home Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+
+<nav class="navbar navbar-dark bg-dark">
+    <span class="navbar-brand mb-0 h1">User Home Page</span>
+    <div class="ml-auto">
+        <a href="/{{ username }}/creator_home">Creator Account</a> | <a href="/{{ username }}/user_profile">Profile</a> | <a href="/{{ username }}/user_tracks">All Tracks</a> | <a href="/{{ username }}/user_albums">All Albums</a> | <a href="/">Logout</a>
+    </div>
+</nav>
+
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center">
+        <h3 class="mb-4">Recommended Tracks</h3>
+        <!-- <button class="btn btn-primary">Show More</button> -->
+    </div>
+
+    <!-- Sliding Tile Container -->
+    <div class="row flex-nowrap overflow-auto">
+        {% for song_data in recommended_data %}
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ song_data[0] }}</h5>
+                    <p class="card-text">Number of Ratings: {{ song_data[2] }} <br> Average Rating: {{ song_data[3] }}/5</p>
+                    <a href="/{{song_data[5]}}/song/{{song_data[4]}}" class="btn btn-primary">View Lyrics</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+
+    <br><br>
+
+    <div class="d-flex justify-content-between align-items-center">
+        <h3 class="mb-4">Your Playlists</h3>
+        <a href="/{{ username }}/create_playlist" class="btn btn-primary">Add playlist</a>
+    </div>
+
+    <!-- Sliding Tile Container -->
+    <div class="row flex-nowrap overflow-auto">
+        <!-- Dummy Song Tiles -->
+        {% for pl_data in playlist_data %}
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ pl_data[1] }}</h5>
+                    <p class="card-text">Number of Songs: {{ pl_data[2] }}</p>
+
+                    <a href="/{{ username }}/playlist/{{pl_data[0]}}" class="btn btn-primary">View Tracks</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        
+        <!-- Add more song tiles -->
+    </div>
+    <br><br>
+    {% for gen_data in genre_data %}
+    <div class="d-flex justify-content-between align-items-center">
+        <h3 class="mb-4">{{gen_data[0]}}</h3>
+    </div>
+
+    <!-- Sliding Tile Container -->
+    
+    <div class="row flex-nowrap overflow-auto">
+        <!-- Dummy Song Tiles -->
+        {% for song in gen_data[1] %}
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{song[1]}}</h5>
+                    <p class="card-text">Artist: {{song[2]}}</p>
+                    <a href="song/{{song[0]}}" class="btn btn-primary">View Lyrics</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <!-- Add more song tiles -->
+    </div>
+    
+    {% endfor %}
+    <!-- ...Rest of your content... -->
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

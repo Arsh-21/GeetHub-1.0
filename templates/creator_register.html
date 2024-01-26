@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Streaming Application</title>
+
+    <!-- Include Bootstrap CSS (from a CDN) -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Include Font Awesome (from a CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+
+<!-- Header -->
+<nav class="navbar navbar-dark bg-dark">
+    <span class="navbar-brand mb-0 h1">Creator Registration</span>
+    <div class="ml-auto">
+        <a href="/{{ username }}/user_home_page">User Account</a> | <a href="/{{ username }}/user_profile">Profile</a> | <a href="/">Logout</a>
+    </div>
+</nav>
+<!-- Main Content -->
+<div class="container my-5 d-flex justify-content-center align-items-center">
+    <!-- Creator Registration Tile -->
+    <div class="card p-4 text-center">
+        <h4 class="mb-3">Register as Creator</h4>
+        <p>Become a creator and share your music with the world! <br>
+            Create new songs and albums and explore your creativity!</p>
+        <form action="/{{ username }}/creator_register" method="POST">
+            <button type="submit" class="btn btn-success btn-bg">Register</button>
+        </form>
+    </div>
+</div>
+
+<!-- Include Bootstrap JS (from a CDN) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
+

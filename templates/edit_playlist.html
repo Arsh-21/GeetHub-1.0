@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Streaming Application</title>
+
+    <!-- Include Bootstrap CSS (from a CDN) -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Include Font Awesome (from a CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+
+<!-- Header -->
+<nav class="navbar navbar-dark bg-dark">
+    <span class="navbar-brand mb-0 h1">Create Playlist</span>
+    <div class="ml-auto">
+        <a href="/{{ username }}/creator_register">Creator Account</a> | <a href="/{{ username }}/user_profile">Profile</a> | <a href="/{{ username }}/user_home_page"> User Home page</a> | <a href="/">Logout</a>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<div class="container my-4">
+    <!-- New Playlist Section -->
+    <div class="bg-light p-4 rounded">
+        <h3>Edit Playlist : {{playlist_name}}</h3>
+        <br>
+        <h4>Add/Delete Songs</h4>
+        <!-- <form action="{{ url_for('search', username = username, category='song_for_playlist') }}" method="POST">
+            <input type="text" name="searchstring" placeholder="Search">
+            <input type="hidden" name="username" value="{{ username }}">
+            <button type="submit">Search</button>
+        </form> -->
+        <!-- Display added songs -->
+        <ul class="list-group">
+            {% for (id,name) in songs %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                {{name}}
+                <form action="/{{ username }}/edit_playlist/{{ playlist_id }}" method="post">
+                    <input type="hidden" name="song_id" value="{{ id }}">
+                    {% if id in songs_in_playlist %}
+                        <input type="hidden" name="action" value="remove">
+                        <button class="btn btn-danger" type="submit">Remove from Playlist</button>
+                    {% else %}
+                        <input type="hidden" name="action" value="add">
+                        <button class="btn btn-primary" type="submit">Add to Playlist</button>
+                    {% endif %}
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<!-- Include Bootstrap JS (from a CDN) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
